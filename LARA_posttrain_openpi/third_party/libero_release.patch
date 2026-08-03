@@ -1,0 +1,14 @@
+diff --git a/libero/libero/envs/regions/base_region_sampler.py b/libero/libero/envs/regions/base_region_sampler.py
+index b2d9e8a..b2a05a2 100644
+--- a/libero/libero/envs/regions/base_region_sampler.py
++++ b/libero/libero/envs/regions/base_region_sampler.py
+@@ -659,9 +659,6 @@ class InSiteRegionRandomSampler(SiteRegionRandomSampler):
+                     break
+ 
+             if not success:
+-                import pdb
+-
+-                pdb.set_trace()
+                 raise RandomizationError("Cannot place all objects ):")
+ 
+         return placed_objects

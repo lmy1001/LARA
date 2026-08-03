@@ -1,0 +1,76 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments and local configuration
+.env
+.env.*
+!.env.example
+.envrc
+.python-version
+.venv/
+venv/
+
+# Packaging
+.Python
+build/
+dist/
+*.egg
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+wheels/
+
+# Tests, coverage, and type/lint caches
+.benchmarks/
+.coverage
+.coverage.*
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+pyrightconfig.json
+
+# Editors and notebooks
+.idea/
+.vscode/
+*.iml
+*.swp
+.DS_Store
+.ipynb_checkpoints/
+
+# Logs and scheduler output
+*.log
+*.log.*
+*.out
+core.*
+hostfile
+qsub_output/
+slurm-logs/
+
+# Training outputs and local assets
+.hydra/
+**/hydra_outputs/
+**/checkpoints/
+output/
+outputs/
+logs/
+wandb/
+pretraineds/
+demo_data/
+playground/
+Gs_Rollout/
+
+# Large local datasets and checkpoints
+*.ckpt
+*.mp4
+*.parquet
+*.pth
+*.pt
+*.safetensors
+
+# Scratch directories
+.cache/
+.history/
+tmp/

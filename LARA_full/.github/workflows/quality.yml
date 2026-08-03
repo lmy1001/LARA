@@ -1,0 +1,27 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: pip install pyyaml
+      - run: python -m compileall -q lara_full moto scripts
+      - run: bash -n run_tokenizer.sh run_lara_full_pretrain.sh run_libero_10.sh
+      - name: Validate YAML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+
+          for path in Path(".").rglob("*.yaml"):
+              with path.open(encoding="utf-8") as handle:
+                  yaml.safe_load(handle)
+          PY

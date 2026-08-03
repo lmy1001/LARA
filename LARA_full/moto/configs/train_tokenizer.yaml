@@ -1,0 +1,32 @@
+defaults:
+  - data: tokenizer_pretrain_data
+  - model: vq_size128_dim32_num8_legacyTrue-vision_MaeLarge-decoder_queryFusionModeAdd_Patch196_useMaskFalse-mformer_legacyTrue
+  - _self_
+
+load_pretrained: false
+load_using_pretrained: true
+pretrained_path: ""
+pretrained_state_dict_key: null
+
+output_dir: ${oc.env:LARA_TOKENIZER_OUTPUT_DIR,./outputs/tokenizer}
+run_name: lara-tokenizer
+batch_size: 384
+max_steps: 300000
+save_steps: 1000
+save_total_limit: 4
+logging_steps: 10
+learning_rate: 1e-4
+weight_decay: 1e-4
+warmup_ratio: 0.003
+dataloader_num_workers: 16
+report_to: tensorboard
+resume: false
+seed: 42
+
+num_gpus: ${oc.decode:${oc.env:LARA_NUM_GPUS,4}}
+balance_dataset_weights: false
+balance_trajectory_weights: true
+
+hydra:
+  run:
+    dir: ${output_dir}/hydra

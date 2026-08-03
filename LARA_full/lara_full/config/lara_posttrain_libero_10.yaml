@@ -1,0 +1,52 @@
+defaults:
+  - data: libero_10
+  - model: gr00tn15
+  - train: train
+  - _self_
+
+output_dir: ${oc.env:LARA_POSTTRAIN_OUTPUT_DIR,./outputs/lara_posttrain_libero_10}
+run_name: lara-posttrain-libero-10
+
+batch_size: 64
+max_steps: 30000
+num_gpus: ${oc.decode:${oc.env:LARA_NUM_GPUS,4}}
+save_steps: 100
+save_total_limit: 8
+logging_steps: 10
+learning_rate: 1e-4
+weight_decay: 1e-5
+warmup_ratio: 0.05
+dataloader_num_workers: 8
+seed: 42
+
+base_model_path: ${oc.env:LARA_STAGE2_CHECKPOINT}
+latent_motion_tokenizer_path: ${oc.env:LARA_POSTTRAIN_TOKENIZER_PATH}
+latent_motion_image_encoder_path: ${oc.env:LARA_VIT_MAE_PATH}
+
+tune_llm: false
+tune_visual: false
+tune_projector: true
+tune_diffusion_model: true
+tune_latent_motion_tokenizer: true
+use_latent_motion_queries: true
+reinitialize_action_head: false
+
+latent_motion_token_count: 8
+latent_motion_codebook_dim: 32
+latent_motion_hidden_layer: -3
+latent_loss_weight: 0.01
+tokenizer_vae_loss_weight: 0.01
+
+lora_rank: 0
+lora_alpha: 16
+lora_dropout: 0.1
+lora_full_model: false
+
+report_to: tensorboard
+resume: false
+balance_dataset_weights: false
+balance_trajectory_weights: true
+
+hydra:
+  run:
+    dir: ${output_dir}/hydra

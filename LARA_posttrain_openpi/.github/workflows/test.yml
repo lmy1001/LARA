@@ -1,0 +1,24 @@
+name: Release checks
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  static:
+    name: Static release checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate launcher
+        run: bash -n run_pi05_lara_libero.sh
+
+      - name: Compile released Python sources
+        run: python -m compileall -q src/openpi moto scripts/train_pytorch.py tests
+
+      - name: Check release contents
+        run: python tests/release_checks.py

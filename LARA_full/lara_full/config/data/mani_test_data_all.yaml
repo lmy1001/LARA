@@ -1,0 +1,21 @@
+data_1:
+  data_config:
+    _target_: lara_full.experiment.data_config.OXEAustinBudsConfig
+    _recursive_: true
+
+    dataset_path: "./austin_buds_dataset_converted_externally_to_rlds_0.1.0_lerobot"
+    video_keys: ["video.image"]
+    state_keys: [
+      "state.motors",
+      "state.gripper",
+    ]
+    action_keys: [
+      "action.position",
+      "action.orientation",
+      "action.gripper",
+    ]
+    language_keys: ["annotation.human.action.task_description"]
+    observation_indices: [0, 15]
+    action_indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    embodiment_tag: "oxe_austin_buds"
+    video_backend: "torchvision_av"

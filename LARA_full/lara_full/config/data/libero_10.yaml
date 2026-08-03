@@ -1,0 +1,22 @@
+data_1:
+  data_config:
+    _target_: lara_full.experiment.data_config.LiberoDataConfig
+    _recursive_: true
+
+    dataset_path: "/path/to/libero_10_lerobot"
+    video_keys: ["video.image", "video.wrist_image"]
+    state_keys: [
+      "state.position",
+      "state.orientation",
+      "state.gripper",
+    ]
+    action_keys: [
+      "action.position",
+      "action.orientation",
+      "action.gripper",
+    ]
+    language_keys: ["annotation.human.action.task_description"]
+    observation_indices: [0, 15]
+    action_indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    embodiment_tag: "libero"
+    video_backend: "torchvision_av"
